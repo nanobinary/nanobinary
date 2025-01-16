@@ -115,14 +115,16 @@ header{
   text-align: left;
   height: 100%;
   width: 100%;
-  transition: 0.09s ease-in-out;
-  left: -100%;
+  opacity: 0; 
+  visibility: hidden;
+  transition:opacity 0.3s ease, visibility 0.3s ease;
 }
 .nav_link{
   margin-left: 25px;
 }
 .navigation_menu_link.active{
-  transform: translateX(100%);
+  visibility: visible;
+  opacity: 1;
 }
 
 .nav_link li{
