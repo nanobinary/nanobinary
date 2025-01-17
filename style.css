@@ -5,11 +5,12 @@ body{
   scroll-behavior: smooth;
   color: #fff;
 }
-b{
+span{
   font-weight: 300;
   background: linear-gradient(45deg, #89d9ec, #1a5df3);
   -webkit-background-clip: text;
   color: transparent;
+  text-shadow: 1px 1px 9px #1a5df3;
 }
 .button_center{
   display: flex;
@@ -28,6 +29,7 @@ b{
   text-align: center;
   display: inline-block;
   font-weight: 500;
+  box-shadow: 1px 1px 15px #1a5df3;
 }
 .buttons:hover{
   border: 2px solid #ffffff;
@@ -43,6 +45,10 @@ header{
 .main_header_nav{
   display: flex;
   justify-content: space-between;
+  padding-bottom: 35px;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(2px);
 }
 .logo_nav{
   display: flex;
@@ -221,7 +227,7 @@ header{
    font-family: "poppins", serif;
    font-size: 25px;
    font-weight: 400;
-   margin: 60% 15px 0px 15px;
+   margin: 50% 15px 0px 15px;
  }
  .header_main_para{
    color: #989898e0;
@@ -247,6 +253,7 @@ header{
    font-size: 35px;
    font-weight: 500;
    margin: 50% 15px 0px 15px;
+   text-shadow: 1px 1px 7px #9f9f9f;
 }
 
 .service_design p{
@@ -295,7 +302,8 @@ header{
   border: 2px solid #cbcbcbed;
   border-radius: 10px;
   padding: 20px;
-  margin: 70px 30px 3px 30px;
+  margin: 70px auto 3px auto;
+  width: 70vw;
 }
 .about h1{
    color: #ffffff;
