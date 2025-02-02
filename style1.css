@@ -1,0 +1,942 @@
+*{
+  padding: 0px;
+  margin: 0px;
+}
+
+body{
+  background: #000;
+  font-family: Poppins, Sans-Serif;
+  position: relative;
+  scrollbar-color: transparent #000; /* Thumb color & Track color */
+}
+
+
+
+body::after {
+  content: "";
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px; /* Shadow height */
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.778) 100%);
+  pointer-events: none; /* Ensure it doesn't block clicks */
+  z-index: 1000; /* Make sure it's above everything */
+}
+
+
+:root{
+  --paragraph:#BDBDBD;
+  --button-bg:#1F1F1F;
+  --schroll-stoke:#545454;
+  --button-text:#BEBCBC;
+  --schroll-text:#6B6B6B;
+  --about-text:#868686;
+  --text-gradient: linear-gradient(#00B4FF,#005DFF);
+  --tab-background-schroll:linear-gradient(#000000,#1B1B1B,#000000);
+  --button-card:linear-gradient(#6AA0FF,#79D8FF);
+  --bg-subs-card:linear-gradient(#2587AF,#1E6DF7);
+  --bg-gray:#181818;
+  
+  --pretty-Bg: rgb(13,15,19);
+}
+
+
+
+@media only screen and (max-width: 768px) {
+img{
+  width: 20px;
+}
+
+.highlightText{
+  color: #00B4FF;
+}
+.underLineText{
+  text-decoration: underline;
+  text-decoration-color: #00B4FF;
+}
+
+.SecMainHeading{
+  font-size: 15px;
+  font-weight: 600;
+  background: -webkit-linear-gradient(#00B4FF,#005DFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: Poppins, Sans-Serif;
+  margin-top: 59px;
+}
+.SecSubHeading{
+  font-size: 18px;
+  font-weight: 600;
+  word-spacing: 3%;
+  font-family: Poppins, Sans-Serif;
+  color: #fff;
+}
+.secPara{
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--paragraph);
+  text-align: center;
+  margin-top: 18px;
+  word-spacing: 3%;
+  font-family: Poppins, Sans-Serif;
+  text-wrap: pretty;
+}
+.buttonSection{
+  background: var(--button-bg);
+  border: none;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 52px;
+  margin-top: 53px;
+  transition: background 0.3s ease-in-out;
+}
+.buttonSection a{
+  text-decoration: none;
+  font-family: Poppins, Sans-Serif;
+  color: #ffffff;
+  word-spacing: 3%;
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: capitalize;
+}
+.buttonSection:hover{
+  background: rgb(19,19,19);
+}
+
+
+
+
+.sliderContainer{
+  display: flex;
+  width: 50vh;
+  height: 275px;
+  width: 276px;
+  overflow-x: scroll;
+  white-space: nowrap;
+  margin-top: 20px;
+}
+.textLeftDiv{
+  width: 276px;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 50px;
+}
+.slideHeading{
+  font-family: Poppins, Sans-Serif;
+  font-size: 15px;
+  font-weight: 500;
+  word-spacing: 3%;
+  color: #ffffff;
+  text-transform: capitalize;
+}
+/* one time */
+
+header{
+  width: 100%;
+  background: linear-gradient(180deg, #001F3F,#00172e,#000, #000e1c, #001F3F);
+	background-size: 400% 400%;
+	animation: gradient 10s ease infinite;
+}
+
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 0%;
+	}
+	50% {
+		background-position: 100% 100%;
+	}
+	100% {
+		background-position: 0% 0%;
+	}
+}
+
+
+
+
+/* nav start */
+header nav{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out, background 0.1s ease-in-out;
+}
+
+.navBar.hidden{
+  transform: translateY(-130px);
+}
+
+.navBar.scrolled{
+  background: rgb(0,0,0);
+  border-bottom: 1px solid var(--bg-gray);
+  box-shadow: 0px 2px 5px rgb(14,14,14);
+}
+
+
+
+.navMenu{
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(50px);
+  background: #0000005a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out,    
+              opacity 0.8s ease-in-out;
+  opacity: 0;
+  z-index: 1;
+}
+
+.navMenu.active{
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.navMenu li{
+  margin-bottom: 30px;
+  list-style: none;
+}
+
+.navMenu li a{
+  text-decoration: none;
+  color: var(--paragraph);
+  font-size: 25px;
+  font-family: Poppins, Sans-Serif;
+  font-weight: 600;
+  word-spacing: 3%;
+}
+
+.Lognav i{
+  margin-left: 20px;
+}
+
+.navLogo{
+  z-index: 2;
+}
+header .logo{
+  width: 40px;
+  height: 31px;
+  margin: 37px 30px;
+}
+
+.threeLineIcon{
+  margin-right: 27px;
+  z-index: 2;
+}
+
+.threeLineIcon .firstLine{
+  width: 28px;
+  height: 2.84px;
+  background: #ffffff;
+  transition: 0.2s ease-in-out;
+}
+.threeLineIcon .secondLine{
+  width: 13px;
+  height:2.84px;
+  background: #0985DD;
+  margin-top: 15px;
+  transition: 0.2s ease-in-out;
+}
+
+.threeLineIcon .firstLine.active{
+  transform:rotate(45deg);
+  transform-origin: 0 0;
+  background: #0985DD;
+}
+.threeLineIcon .secondLine.active{
+  width: 28px;
+  transform-origin: 0 100%;
+  transform: rotate(-45deg);
+}
+
+/* nav complete*/
+
+.heroSection{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.heroMainHeading{
+  background: -webkit-linear-gradient(#00B4FF,#005DFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: Poppins, Sans-Serif;
+  font-size: 32px;
+  font-weight: 700;
+  word-spacing: 3%;
+}
+.heroSubHeading{
+  color: #ffffff;
+  font-family: Poppins, Sans-Serif;
+  font-size: 32px;
+  font-weight: 400;
+  word-spacing: 3%;
+  margin-top: 12px;
+}
+
+.heroPara{
+  color: var(--paragraph);
+  font-size: 15px;
+  font-weight: 300;
+  margin-top: 41px;
+  word-wrap: break-word;
+}
+.heroButtonsDiv{
+  margin-top: 45px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.heroButtonsDiv .heroButton{
+  padding: 14px 18px;
+  border: 1px solid #00B4FF;
+  border-radius: 69px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  word-spacing: 3%;
+  list-style: none;
+  font-family: Poppins, Sans-Serif;
+}
+.heroSection .heroButtonTwo{
+  background: var(--text-gradient);
+  color: #ffffff;
+  border: none;
+  padding: 14px 18px;
+}
+
+
+
+/* service start */
+.serviceSection{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 0px 30px;
+  background: #000000;
+}
+.serviceSection::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #000000);
+      z-index: 1;
+}
+
+.horizontalAlignDiv{
+  padding: 0px 39px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-top: 50px;
+}
+.firstTwoServiceDiv{
+  margin-top: 100px;
+}
+
+
+.horizontalAlignDiv .commonDiv{
+  width: 100%;
+  background: var(--bg-gray);
+  width: 217px;
+  border-radius: 5px;
+  padding: 0px 27px;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0px 0px 5px #12121265;
+}
+
+
+.serviceSection .horizontalAlignDiv .commonDiv:hover{
+  transform: scale(1.05); /* Slight zoom */
+}
+.commonDiv .serviceBoxHeading{
+  font-size: 18px;
+  font-weight: 600;
+  word-spacing: 3%;
+  color: #ffffff;
+  margin-top: 61px;
+}
+.commonDiv p{
+  font-size: 12px;
+  font-weight: 400;
+  word-spacing: 3%;
+  word-wrap: break-word;
+  color: var(--paragraph);
+  margin-top: 16px;
+  line-height: 132%;
+}
+
+.commonDiv .serviceButton{
+  background: transparent;
+  border: none;
+  margin-top: 10px;
+}
+.serviceButton a{
+  color: #00B4FF;
+  font-weight: 400;
+  letter-spacing: 3%;
+  font-size: 13px;
+  text-decoration: none;
+  font-family: Poppins, Sans-Serif;
+}
+.serviceSpecialButtonDiv{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-bottom: 40px;
+}
+.serviceSpecialButtonDiv .serviceSpecialButton{
+  background: var(--button-bg);
+  border: none;
+  width: 100%;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 11px;
+  box-shadow: 0px 0px 5px #00000065;
+}
+.serviceSpecialButtonDiv .firstButton{
+  margin-top: 28px;
+  color: #00B4FF;
+  border: dotted;
+}
+.serviceSection .firstTwoServiceDiv .serviceSpecialButtonDiv .firstButton:hover{
+  box-shadow: 0px 0px 10px #ffffff65;
+}
+.serviceSpecialButton a{
+  font-size: 8px;
+  font-weight: 600;
+  font-family: Poppins, Sans-Serif;
+  letter-spacing: 3%;
+  color: var(--button-text);
+  text-decoration: none;
+}
+.serviceSection .commonDiv .sectionSvgDiv{
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 12px;
+}
+.serviceSection .commonDiv .sectionSvgDiv div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.serviceSection .commonDiv .ServiceSvg{
+  height: 80%;
+  width: 80%;
+  opacity: 54%;
+}
+
+/* service end */
+
+
+
+
+
+.developerSection{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url(image/background/Texture-Retro-Dot-Halftone--Streamline-Textures.png);
+  background-position: center 70px;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  padding: 0px 30px;
+}
+
+.developerSection .devCodeIcon{
+  width: 230px;
+  height: auto;
+  margin-top: 56px;
+}
+
+.sliderContainer .slideDiv{
+  width: 236px;
+  height: 272px;
+  border-radius: 20px;
+  flex: 0 0 auto;
+  margin: 0px 20px 0px 0px;
+  position: relative;
+}
+.developerSection .sliderContainer div h1{
+  color: #ffffff;
+  font-size: 15px;
+  margin-left: 20px;
+  font-family: Poppins, Sans-Serif;
+  word-spacing: 3%;
+  position: absolute;
+  bottom: 20px;
+}
+
+
+/*           for dev*/
+.developerSection .DevTextLeftDiv{
+  margin-top: 63px;
+}
+.sliderContainer .devonebg{
+  background: url(image/background/dev1.jpg);
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-size: 275px 276px;
+}
+.sliderContainer .devtwobg{
+  background: url(image/background/dev2.jpg);
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-size: 275px 276px;
+}
+.sliderContainer .devthreebg{
+  background: url(image/background/dev3.jpg);
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-size: 275px 276px;
+}
+/*           for dev end*/
+/*           for business*/
+.BusisliderContainer{
+  margin-top: 20px;
+}
+
+.sliderContainer .busionebg{
+  background: url(image/background/dev4.jpg);
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-size: 6275px 276px;
+}
+.sliderContainer .busitwobg{
+  background: url(image/background/dev5.jpg);
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-size: 275px 276px;
+}
+.sliderContainer .busithreebg{
+  background: url(image/background/dev6.jpg);
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-size: 275px 276px;
+}
+/*           for business end*/
+/* for product start */
+.prodsliderContainer{
+  margin-top: 20px;
+}
+
+.sliderContainer .prodonebg{
+  background: url(image/background/dev7.jpg);
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-size: 275px 276px;
+}
+.sliderContainer .prodtwobg{
+  background: url(image/background/dev8.jpg);
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-size: 275px 276px;
+}
+.sliderContainer .prodthreebg{
+  background: url(image/background/dev9.jpg);
+  background-position: auto;
+  background-repeat: no-repeat;
+  background-size: 275px 276px;
+}
+/* for product end */
+
+
+
+/* about start */
+
+.aboutSection{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aboutSection div{
+  background: transparent;
+  padding: 28px 0px 35px 0px;
+  margin-top: 32px;
+  width: 236px;
+  height: auto;
+}
+.aboutSection div p{
+  color: var(--about-text);
+  font-size: 20px;
+  font-weight: 400;
+  word-spacing: 3%;
+  text-align: left;
+  font-family: Poppins, Sans-Serif;
+  border-left: 3px solid #4facfe;
+  padding: 15px 0px 15px 20px;
+}
+
+
+/* core value start */
+
+.coreValueSection{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.coreValueSection .firstTwoValueBox{
+  width: 68.59375%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 116px;
+  gap: 32px;
+}
+
+.coreValueSection .LastTwoValueBox{
+  width: 68.59375%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 31px;
+  gap: 32px;
+}
+
+.coreValueSection .horizontalAlignDiv .commonDiv{
+  background: var(--bg-gray);
+  height: 198px;
+  width: 198px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 10px;
+}
+.coreValueSection .horizontalAlignDiv .commonDiv i{
+  font-size: 25px;
+  color: #00bfff;
+}
+
+.coreValueSection .horizontalAlignDiv h1{
+  font-size: 9px;
+  font-weight: 600;
+  word-spacing: 3%;
+  color: #ffffff;
+  font-family: Poppins, Sans-Serif;
+}
+.coreValueSection .horizontalAlignDiv p{
+  font-size: 9px;
+  font-weight: 600;
+  word-spacing: 3%;
+  color: var(--paragraph);
+  font-family: Poppins, Sans-Serif;  
+  margin-top: 0px;
+}
+
+/* core value end */
+
+
+/* subscription start */
+
+.subscribeSection{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 0px;
+}
+
+.subscribeCardDiv{
+  width: 90vw;
+  height: 468px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.subscribeCardDiv  .subsCard{
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  padding: 38px 25px 0px 25px;
+  height: 318px;
+  width: 236px;
+  margin: 0px 20px 0px 10px;
+  transition: 0.3s ease-in-out;
+  flex: 0 0 auto;
+  border-radius: 20px;
+  position: relative;
+}
+.subscribeCardDiv .subsCard:hover {
+  transform: scale(1.05); /* Slight zoom */
+}
+
+.subscribeCardDiv  .subsCard h1{
+  color: #ffffff;
+  font-size: 20px;
+  word-spacing: 3%;
+  font-weight: 600;
+  font-family: Poppins, Sans-Serif;
+}
+.subscribeCardDiv  .subsCard h1 span{
+  font-size: 9px;
+  color: #ffffff;
+}
+
+.subscribeCardDiv  .subsCard h2{
+  color: #ffffff;
+  font-size: 20px;
+  word-spacing: 3%;
+  font-weight: 600;
+  font-family: Poppins, Sans-Serif;
+}
+.subscribeCardDiv  .subsCard h2 span{
+  font-size: 10px;
+}
+
+.subscribeCardDiv  .subsCard p{
+  text-wrap: pretty;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 400;
+  word-spacing: 3%;
+  line-height: 132%;
+  font-family: Poppins, Sans-Serif;
+  margin-top: 26px;
+}
+
+.subscribeCardDiv .firstCard{
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  background-size: 400% 400%;
+	animation: gradientAnimationCard 10s ease infinite;
+	box-shadow: 0px 10px 20px rgba(79, 172, 254, 0.6), 0px 4px 15px rgba(0, 242, 254, 0.4);
+	border: 3px solid #00c6ff;
+	height: 318px;
+}
+.subscribeCardDiv .secondCard{
+  background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+  background-size: 400% 400%;
+	animation: gradientAnimationCard 10s ease infinite;
+	box-shadow: 0px 10px 20px rgba(161, 140, 209, 0.6), 0px 4px 15px rgba(251, 194, 235, 0.4);
+	border: 3px solid #d8b4e2;
+	height: 348px;
+	position: relative;
+}
+.subscribeCardDiv .thirdCard{
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  background-size: 400% 400%;
+	animation: gradientAnimationCard 10s ease infinite;
+	box-shadow: 0px 10px 20px rgba(255, 154, 158, 0.6), 0px 4px 15px rgba(250, 208, 196, 0.4);
+	border: 3px solid #ffb7b2;
+	height: 368px;
+}
+
+
+
+@keyframes gradientAnimationCard{
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+
+
+
+.subscribeSection .subscribeCardDiv .subsCard .subsButtonDiv{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+}
+.subscribeCardDiv  .subsCard #SubsButtonBasic{
+  background: #00bfff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 5px 15px rgba(0, 191, 255, 0.6);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: Poppins, sans-serif;
+}
+
+.subscribeCardDiv .firstCard button:hover {
+  transform: translateY(-3px); 
+  box-shadow: 0px 8px 20px rgba(0, 191, 255, 0.8);
+}
+
+
+.subscribeCardDiv  .subsCard #SubsButtonPro{
+  background: #c084d8;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: Poppins, sans-serif;
+  border-radius: 5px;
+  box-shadow: 0px 5px 15px rgba(192, 132, 216, 0.6);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.secondCard .populartag{
+  color: #ffffff;
+  font-size: 15px;
+  word-spacing: 3%;
+  font-weight: 600;
+  font-family: Poppins, Sans-Serif;
+  position: absolute;
+  top: -10px;
+  left: -16px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: #d7bbe2;
+  box-shadow: 0px 5px 15px rgba(192, 132, 216, 0.6);
+}
+
+.subscribeCardDiv .secondCard button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 20px rgba(192, 132, 216, 0.8);
+}
+
+
+.subscribeCardDiv  .subsCard #SubsButtonAdvance{
+  background: #ff7b7b;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: Poppins, sans-serif;
+  border-radius: 5px;
+  box-shadow: 0px 5px 15px rgba(255, 123, 123, 0.6);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.subscribeCardDiv .secondCard button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 20px rgba(255, 123, 123, 0.8);
+}
+
+
+/* subscription end */
+
+
+
+
+
+
+/* footer start */
+
+.footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins, Sans-Serif;
+  margin-top: 100px;
+  padding: 0px 30px;
+  background: rgb(15,15,15);
+}
+
+
+
+
+
+
+.footer .footerlogo{
+  height: 91px;
+  width: auto;
+  margin-top: 100px;
+}
+
+.footer .footerQuickLinkDiv{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  
+  width: 100%;
+  margin-top: 58px;
+  row-gap: 50px;
+}
+.footer .footerQuickLinkDiv .quickLinkDiv{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.footer .footerQuickLinkDiv .quickLinkDiv h1{
+  font-size: 20px;
+  font-weight: 600;
+  word-spacing: 3%;
+  color: #ffffff;
+}
+
+.footer .footerQuickLinkDiv .quickLinkDiv li{
+  list-style: none;
+}
+.footer .footerQuickLinkDiv .quickLinkDiv li a{
+  text-decoration: none;
+  color: var(--paragraph);
+  font-size: 15px;
+  font-weight: 400;
+  word-spacing: 3%;
+}
+
+.footer .footerSocial{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.footer .footerSocial i{
+  font-size: 20px;
+  color: #ffffff;
+  margin: 20px 10px 20px 0px;
+}
+
+
+
+/* footer end */
+
+
+
+
+}
